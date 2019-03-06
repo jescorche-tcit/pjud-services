@@ -1,10 +1,7 @@
-const express = require('express');
-const app = express();
+// Transpile all code following this line with babel and use 'env' (aka ES6) preset.
+require('babel-register')({
+  presets: [ 'env' ]
+})
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
-app.listen(8081, function () {
-  console.log('Example app listening on port 8081!');
-});
+//Import the rest of the application
+module.exports = require('./app.js')
