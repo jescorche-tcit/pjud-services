@@ -4,9 +4,14 @@ import LawyerServices from './lib/lawyers'
 const app = express();
 
 app.get('/', function (req, res) {
-  LawyerServices.validate('888888888', (data) => {
-    res.send(data);
-  });
+  const taxNumber = req.query.rut;
+  if (taxNumber) {
+    LawyerServices.validate(taxNumber, (data) => {
+      res.send(data);
+    });
+  } else {
+    throw new Error("RUT wasn't included or it isn't valid");
+  }
 });
 
 app.listen(8081, function () {
