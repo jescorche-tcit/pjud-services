@@ -3,12 +3,12 @@ import LawyerServices from './lib/lawyers'
 
 const app = express();
 
-app.get('/', function (req, res) {
+app.get('/', function (req, res, next) {
   const taxNumber = req.query.rut;
   if (taxNumber) {
     LawyerServices.validate(taxNumber, (data) => {
       res.send(data);
-    });
+    }, next);
   } else {
     throw new Error("RUT wasn't included or it isn't valid");
   }
