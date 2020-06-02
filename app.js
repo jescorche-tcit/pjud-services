@@ -5,7 +5,7 @@ import fetch from 'node-fetch'
 
 const app = express();
 
-const xmlParser = bodyParser.text({ type: 'application/xml' })
+const xmlParser = bodyParser.text({ type: 'application/xml', limit: '100mb' })
 
 app.get('/', function (req, res, next) {
   const taxNumber = req.query.rut;
